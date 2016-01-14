@@ -325,7 +325,7 @@ alcohol = c(97.2,
 "453", "454", "455", "456", "457", "458", "459", "460", "461", 
 "462", "463"))
 
-glmFit <- train(as.factor(chd) ~ ., method = "glm", data=SAheart, family="binomial")
+glmFit <- glm(chd ~ ., data=SAheart)
 rfFit <- train(as.factor(chd) ~ ., method = "rf", data=SAheart, family="binomial")
 
 chdRisk <- function(input,model) {
@@ -340,7 +340,7 @@ chdRisk <- function(input,model) {
 
 shinyServer(
      function(input,output) {
-        output$predGLM <- renderText({chdRisk(input,glmFit)})
+        output$predGLM <- renderText({round(chdRisk(input,glmFit),3)})
         output$predRF <- renderText({ifelse(as.character(chdRisk(input,rfFit)) == "1","High","Low")})
      }
 )

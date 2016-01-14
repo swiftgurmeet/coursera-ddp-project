@@ -15,9 +15,12 @@ shinyUI(pageWithSidebar(
      sliderInput("age", "Pick patient's age",value = 50, min = 20, max = 100, step = 1)
    ) ,
    mainPanel(    
-     h4("Coronary Heart Disease Predictor using GLM"),
+     h4("Wait, it may take some time for initial results to appear  ..."),
+     h3("GLM Method (Real Valued)"),
      textOutput("predGLM"),
-     h4("Coronary Heart Disease Predictor using Random Forest"),
-     textOutput("predRF")
+     h3("Random Forest Method (Binary Value)"),
+     textOutput("predRF"),
+     tags$br(),
+     tags$a(href="https://github.com/swiftgurmeet/coursera-ddp-project", "GitHub Link")
    )
 ))
