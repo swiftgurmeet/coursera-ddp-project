@@ -1,4 +1,5 @@
 library(shiny)
+library(caret)
 
 SAheart <- structure(list(sbp = c(160L, 144L, 118L, 170L, 134L, 132L, 142L, 
 114L, 114L, 132L, 206L, 134L, 118L, 132L, 112L, 117L, 120L, 146L, 
@@ -324,8 +325,7 @@ alcohol = c(97.2,
 "453", "454", "455", "456", "457", "458", "459", "460", "461", 
 "462", "463"))
 
-#glmFit <- train(as.factor(chd) ~ ., method = "glm", data=SAheart, family="binomial")
-glmFit <- glm(chd ~ ., data=SAheart)
+glmFit <- train(as.factor(chd) ~ ., method = "glm", data=SAheart, family="binomial")
 rfFit <- train(as.factor(chd) ~ ., method = "rf", data=SAheart, family="binomial")
 
 chdRisk <- function(input,model) {
